@@ -2,7 +2,6 @@ package com.miranda.finanzmanager.service;
 
 import com.miranda.finanzmanager.exception.AusgabeNotFoundException;
 import com.miranda.finanzmanager.model.Ausgabe;
-import com.miranda.finanzmanager.model.Einnahme;
 import com.miranda.finanzmanager.repository.AusgabeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
