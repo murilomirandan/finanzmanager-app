@@ -1,0 +1,42 @@
+#change in application.properties
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://mysqldb:3306/<MYSQL_DATABASE>
+#spring.datasource.username=<MYSQL_USER>
+#spring.datasource.password=<MYSQL_PASSWORD>
+
+version: "3"
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: finanzapp
+      MYSQL_USER: finanzapp
+      MYSQL_PASSWORD: finanzapp
+    volumes:
+      - mysqldb:/var/lib/mysql
+
+  spring-boot:
+    container_name: springboot-app
+    image: finanzmanager-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysqldb
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/app
+
+volumes:
+  mysqldb:
+
+
+
